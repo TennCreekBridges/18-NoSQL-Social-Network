@@ -19,4 +19,4 @@ mongoose.set('debug', true);
 
 app.use(require('./routes'));
 
-app.listen(PORT, () => console.log(`Status: RAWK @ localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Status: 🤘 @ localhost:${PORT}`));
