@@ -1,17 +1,57 @@
-username
->> String
->> unique
->> required
->> trimmed
+// import required
+const { Schema, model } = require('mongoose');
 
-email
->> String
->> required
->> unique
->> match valid email (mongoose validation)
+// generate user schema
+const userSchema = new Schema(
+  {
+    username: {
+      type: String,
+      unique: true,
+      required: 'We need your username here please and thanks.',
+      trim: true,
+    },
+    email: {
+      type: String,
+      unique: true,
+      // mongoose email validation
+      match: [
+        /.+@.+\..+/,
+        "C'mon, give us something valid. We have to know where to send your spam email.",
+      ],
+    },
+    // reference Thought model
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Thought',
+      },
+    ],
+    // reference User model to generate friends array
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+  },
+  {
+    // virtuals & getters
+    toJSON: {
+      virtuals: true,
+      getters: true,
+    },
+    // omit id
+    id: false,
+  }
+);
 
-thoughts
->> array of _id values referencing Thought model
+// generate friend totals
+userSchema.virtual('friendCount').get(function () {
+  return this.friends.length;
+});
 
-friends
->> array of _id values referencing User model
+// define user model
+const User = model('User', userSchema);
+
+// export User model
+module.exports = User;
