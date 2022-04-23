@@ -1,8 +1,9 @@
 // import required
 const { Schema, model } = require('mongoose');
+const Thought = require('./Thought');
 
 // generate user schema
-const userSchema = new Schema(
+const UserSchema = new Schema(
   {
     username: {
       type: String,
@@ -47,12 +48,17 @@ const userSchema = new Schema(
 );
 
 // generate friend totals
-userSchema.virtual('friendCount').get(function () {
+UserSchema.virtual('friendCount').get(function () {
   return this.friends.length;
 });
 
+UserSchema.pre("remove", function (next) {
+  Thought.remove({ username: this.username }).exec();
+  next();
+});
+
 // define user model
-const User = model('User', userSchema);
+const User = model('User', UserSchema);
 
 // export User model
 module.exports = User;

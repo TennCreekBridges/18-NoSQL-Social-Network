@@ -2,8 +2,9 @@
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
+
 // generate reaction schema
-const reactionSchema = new Schema(
+const ReactionSchema = new Schema(
   {
     // custom reaction id
     reactionId: {
@@ -35,8 +36,8 @@ const reactionSchema = new Schema(
   }
 );
 
-// thoughtSchema
-const thoughtSchema = new Schema(
+// ThoughtSchema
+const ThoughtSchema = new Schema(
   {
     thoughtText: {
       type: String,
@@ -53,8 +54,9 @@ const thoughtSchema = new Schema(
       type: String,
       required: 'We have to know your username.',
     },
-    // get reactionSchema
-    reactions: reactionSchema,
+
+    // get ReactionSchema
+    reactions: [ReactionSchema],
   },
   {
     // virtuals & getters
@@ -67,13 +69,14 @@ const thoughtSchema = new Schema(
   }
 );
 
-// get reactions to thoughts
-thoughtSchema.virtual('reactionCount').get(function () {
+
+// get all reactions to thoughts
+ThoughtSchema.virtual('reactionCount').get(function () {
   return this.reactions.length;
 });
 
 // define thought model
-const Thought = model('Thought', thoughtSchema);
+const Thought = model('Thought', ThoughtSchema);
 
 // export thought model
 module.exports = Thought;
