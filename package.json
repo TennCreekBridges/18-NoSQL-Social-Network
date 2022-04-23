@@ -1,17 +1,18 @@
 {
   "name": "18-nosql-social-network",
   "version": "1.0.0",
-  "description": "",
+  "description": "Social network web application where usesers share thoughts and react to friend thoughts, along with generating a friends list.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TennCreekBridges/18-NoSQL-Social-Network.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Bridgett Valet",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/TennCreekBridges/18-NoSQL-Social-Network/issues"
@@ -20,5 +21,6 @@
   "dependencies": {
     "express": "^4.17.3",
     "mongoose": "^6.3.0"
-  }
+  },
+  "devDependencies": {}
 }

@@ -19,6 +19,7 @@ const userSchema = new Schema(
         "C'mon, give us something valid. We have to know where to send your spam email.",
       ],
     },
+
     // reference Thought model
     thoughts: [
       {

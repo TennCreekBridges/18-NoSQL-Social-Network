@@ -2,37 +2,6 @@
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-// thoughtSchema
-const thoughtSchema = new Schema(
-  {
-    thoughtText: {
-      type: String,
-      required: 'You gotta enter a thought.',
-      minlength: 1,
-      maxlength: 280,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: (createdAtVal) => dateFormat(createdAtVal),
-    },
-    username: {
-      type: String,
-      required: 'We have to know your username.',
-    },
-    // get reactionSchema
-    reactions: reactionSchema,
-  },
-  {
-    // virtuals & getters
-    toJSON: {
-      virtuals: true,
-      getters: true,
-    },
-    // omit id
-    id: false,
-  }
-);
 // generate reaction schema
 const reactionSchema = new Schema(
   {
@@ -66,8 +35,40 @@ const reactionSchema = new Schema(
   }
 );
 
+// thoughtSchema
+const thoughtSchema = new Schema(
+  {
+    thoughtText: {
+      type: String,
+      required: 'You gotta enter a thought.',
+      minlength: 1,
+      maxlength: 280,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: (createdAtVal) => dateFormat(createdAtVal),
+    },
+    username: {
+      type: String,
+      required: 'We have to know your username.',
+    },
+    // get reactionSchema
+    reactions: reactionSchema,
+  },
+  {
+    // virtuals & getters
+    toJSON: {
+      virtuals: true,
+      getters: true,
+    },
+    // omit id
+    id: false,
+  }
+);
+
 // get reactions to thoughts
-ThoughtSchema.virtual('reactionCount').get(function () {
+thoughtSchema.virtual('reactionCount').get(function () {
   return this.reactions.length;
 });
 
