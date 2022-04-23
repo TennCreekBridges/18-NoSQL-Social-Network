@@ -1,7 +1,7 @@
 // required
-const router = require("express").Router();
+const router = require('express').Router();
 
-
+// User routes
 const {
   getAllUsers,
   getUserById,
@@ -10,13 +10,16 @@ const {
   deleteUser,
   addFriend,
   removeFriend,
-} = require("../../controllers/user-controller");
+} = require('../../controllers/user-controller');
 
-router.route("/").get(getAllUsers).post(createUser);
+// api users
+router.route('/').get(getAllUsers).post(createUser);
 
-router.route("/:userId").get(getUserById).put(updateUser)
-.delete(deleteUser);
+// api user by :id
+router.route('/:userId').get(getUserById).put(updateUser).delete(deleteUser);
 
-router.route("/:userId/friends/:friendId").post(addFriend).delete(removeFriend);
+// api user:id/friends/friendId
+router.route('/:userId/friends/:friendId').post(addFriend).delete(removeFriend);
 
+// export user routes
 module.exports = router;
