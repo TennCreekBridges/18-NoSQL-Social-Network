@@ -47,4 +47,4 @@ Run the following command from your CLI to start the application:
 
 <a name ="walkthrough"></a>
 ## Walkthrough Video
-If you would like to view me rocking out some Insomnia to display the functionality of this app, you may do so here: https://www.screencast.com/t/qgT2ooxQg
+If you would like to view me rocking out some Insomnia to display the functionality of this app, you may do so here: Part I: https://drive.google.com/file/d/1GrQZqZ7_-1D4rWL76uFosWrr6KpuRjeh/view Part II: https://drive.google.com/file/d/1mu5LscosAd44i8KX8NUmyfyI68qusyKh/view Part III (sorry!!): https://drive.google.com/file/d/191Jes0aUyYhlN2CpgJ1M1nMbw9UdoNy1/view
